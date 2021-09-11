@@ -1,0 +1,16 @@
+@import '~antd/dist/antd.css';
+
+
+body {
+  color: #1ee0e0;
+  background-color: #120e26;
+}
+
+.input-form {
+  margin: 1rem;
+}
+
+.input-fields {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
