@@ -6,7 +6,7 @@ const HelloWorld: React.FC<{}> = () => {
 
   return (
     <div>
-      <Button>ABCD</Button>
+      <Button>{hello}</Button>
     </div>
   );
 };
