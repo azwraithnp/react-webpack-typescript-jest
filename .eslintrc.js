@@ -36,15 +36,6 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         'react/prop-types': 'off',
-        '@typescript-eslint/ban-types': [
-          'error',
-          {
-            extendDefaults: true,
-            types: {
-              '{}': false,
-            },
-          },
-        ],
       },
     },
     {

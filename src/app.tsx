@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import HelloWorld from './components/HelloWorld';
 import './styles/index.css';
+import { Home } from './views/Home';
 
 const App = () => (
   <div>
-    <HelloWorld />
+    <Home />
   </div>
 );
 

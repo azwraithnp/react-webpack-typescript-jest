@@ -1,9 +1,7 @@
 @import '~antd/dist/antd.css';
 
-
 body {
-  color: #1ee0e0;
-  background-color: #120e26;
+  color: #232323;
 }
 
 .input-form {
@@ -13,4 +11,25 @@ body {
 .input-fields {
   margin-left: 1rem;
   margin-bottom: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1B54A8;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #232323;
 }
