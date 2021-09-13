@@ -1,20 +1,34 @@
 import { Col, Row } from 'antd';
 import React from 'react';
+import Director from 'src/interfaces/director';
+import Movie from 'src/interfaces/movie';
+import { API_URL } from '../../../utils/urls';
 import { CardStyled } from './styles/card.styled';
 
 /**
  * @interface Props
  * @prop {void} Props.setDisplayDetails - Show or hide the display movie details drawer
  * @prop {void} Props.setDirectorModal - Show or hide the director details modal
+ * @prop {boolean} Props.detailsLayout - Value to denote whether the movie card is being used in home or movie details to change alignment
+ * @prop {Movie} Props.movie - Movie detail object to populate data
  */
 interface Props {
-  setDirectorModal: (show: boolean) => void;
-  setDisplayDetails: (show: boolean) => void;
+  setDirectorModal: (show: Director | null) => void;
+  setDisplayDetails: (show: Movie | null) => void;
+  detailsLayout?: boolean;
+  movie: Movie;
 }
 
+/**
+ *
+ * @param {Props} Props passed to the component
+ * @returns Individual movie card object to show brief movie details in a card in movies list
+ */
 export const MovieCard: React.FC<Props> = ({
   setDirectorModal,
   setDisplayDetails,
+  movie,
+  detailsLayout,
 }) => {
   /**
    * Stops event's propagation to prevent bubbling,
@@ -23,7 +37,7 @@ export const MovieCard: React.FC<Props> = ({
    */
   const handleDirectorClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setDirectorModal(true);
+    setDirectorModal(movie.director);
   };
 
   /**
@@ -33,30 +47,27 @@ export const MovieCard: React.FC<Props> = ({
    */
   const handleViewClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setDisplayDetails(true);
+    setDisplayDetails(movie);
   };
 
   return (
     <Col xs={24}>
-      <Row>
+      <Row justify={detailsLayout ? 'start' : 'center'}>
         <CardStyled onClick={(event) => handleViewClick(event)}>
           <Col>
-            <img
-              src="https://i.pinimg.com/originals/bc/d5/c9/bcd5c9519581acc60bd60a429ab0c88f.jpg"
-              alt="movie_image"
-            />
+            <img src={API_URL + movie.cover?.url} alt="movie_image" />
           </Col>
           <Col>
             <div>
               <Row>
-                <span className="title">Interstellar</span>
+                <span className="title">{movie.title}</span>
               </Row>
               <Row>
-                <span className="category_title">Space Movie</span>
+                <span className="category_title">{movie.category_name}</span>
               </Row>
               <Row onClick={(event) => handleDirectorClick(event)}>
                 <span className="director_title" id="director_title">
-                  Christopher Nolan
+                  {movie.director?.name}
                 </span>
               </Row>
             </div>
