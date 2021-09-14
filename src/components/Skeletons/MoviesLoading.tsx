@@ -1,6 +1,6 @@
 import { Col } from 'antd';
 import React from 'react';
-import { SkeletonCard } from '../Skeletons/SkeletonCard';
+import { SkeletonCard } from './SkeletonCard';
 
 /**
  *

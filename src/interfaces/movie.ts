@@ -11,6 +11,7 @@ import Director from './director';
  * @prop {string} Movie.updated_at Date when the Movie object was updated in Date String
  * @prop {Cover} Movie.cover Cover image object of the Movie
  * @prop {Director} Movie.director Director object of the Movie
+ * @prop {boolean} Movie.fav Value to denote whether the movie is added to favorites
  */
 interface Movie {
   id: number;
@@ -21,6 +22,7 @@ interface Movie {
   updated_at: string;
   cover: Cover;
   director: Director;
+  fav: boolean;
 }
 
 export default Movie;

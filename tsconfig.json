@@ -13,5 +13,8 @@
       "noImplicitThis": true,
       "strictNullChecks": true,
       "lib": ["es6", "dom"],
+      "typeRoots": ["./types", "./node_modules/@types"],
+      "esModuleInterop": true
     },
+    "exclude": ["node_modules"]
   }

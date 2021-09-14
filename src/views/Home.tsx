@@ -1,10 +1,10 @@
 import { Layout, Row } from 'antd';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { MovieDetails } from '../../src/components/Home/MovieDetails';
-import { MovieCard } from '../../src/components/Home/MovieCard';
-import { DirectorDetails } from '../../src/components/Home/DirectorDetails';
-import { MoviesLoading } from '../../src/components/Home/MoviesLoading';
+import { MovieDetails } from '../components/Home/Movie/MovieDetails';
+import { MovieCard } from '../components/Home/Movie/MovieCard';
+import { DirectorDetails } from '../components/Home/Director/DirectorDetails';
+import { MoviesLoading } from '../components/Skeletons/MoviesLoading';
 import { API_URL } from '../../utils/urls';
 import Movie from 'src/interfaces/movie';
 import Director from 'src/interfaces/director';

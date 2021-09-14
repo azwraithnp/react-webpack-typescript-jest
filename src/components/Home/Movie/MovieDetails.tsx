@@ -1,12 +1,13 @@
-import { Col, Drawer, Row } from 'antd';
+import { Col, Drawer, message, Row } from 'antd';
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
 import React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import Director from 'src/interfaces/director';
 import Movie from 'src/interfaces/movie';
-import { API_URL } from '../../../utils/urls';
+import { API_URL } from '../../../../utils/urls';
 import { MovieCard } from './MovieCard';
-import { ButtonStyled } from './styles/button.styled';
-import { DrawerCard } from './styles/drawer-card.styled';
+import { ButtonStyled } from '../styles/button.styled';
+import { DrawerCard } from '../styles/drawer-card.styled';
 
 /**
  * @interface Props
@@ -23,6 +24,30 @@ interface Props {
 }
 
 /**
+ * Update the favorites boolean status for this movie
+ * @param {boolean} val boolean value to update the favorites status in the movie
+ * @param {number} id ID of the movie which has its favorites status to be update
+ * @returns Response from calling the update favorites status API for movies
+ */
+const changeFavStatus = async ({
+  val,
+  id,
+}: {
+  val: boolean;
+  id: number | undefined;
+}) => {
+  const favResponse = await fetch(`${API_URL}/movies/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({ fav: val }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return favResponse.json();
+};
+
+/**
  *
  * @param {Props} Props passed to the component
  * @returns Detail view to show when a movie card is clicked
@@ -33,7 +58,26 @@ export const MovieDetails: React.FC<Props> = ({
   setShowDirectorDetails,
   movieList,
 }) => {
-  const breakpoint = useBreakpoint(); //custom hook provided by AntD to find out window's breakpoints
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading } = useMutation(changeFavStatus, {
+    onSuccess: (data) => {
+      console.log(data);
+      setShowDisplayDetails(data);
+      message.success(
+        data.fav ? 'Added to Favorites' : 'Removed from Favorites',
+      );
+    },
+    onError: () => {
+      message.error('There was an error');
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('movies');
+    },
+  });
+
+  //custom hook provided by AntD to find out window's breakpoints
+  const breakpoint = useBreakpoint();
 
   /**
    * Stops event's propagation to prevent bubbling,
@@ -42,7 +86,7 @@ export const MovieDetails: React.FC<Props> = ({
    */
   const addToFav = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    console.log('added to fav');
+    mutate({ val: !showDisplayDetails?.fav, id: showDisplayDetails?.id });
   };
 
   /**
@@ -100,8 +144,14 @@ export const MovieDetails: React.FC<Props> = ({
           </Col>
         </Row>
         <Row>
-          <ButtonStyled size="large" onClick={(event) => addToFav(event)}>
-            Add to Favorite
+          <ButtonStyled
+            size="large"
+            onClick={(event) => addToFav(event)}
+            loading={isLoading}
+          >
+            {showDisplayDetails?.fav
+              ? 'Added To Favourites'
+              : 'Add to Favorite'}
           </ButtonStyled>
         </Row>
         <Row gutter={[0, 18]} style={{ marginTop: '20px' }}>

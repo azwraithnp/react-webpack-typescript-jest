@@ -2,8 +2,8 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import Director from 'src/interfaces/director';
 import Movie from 'src/interfaces/movie';
-import { API_URL } from '../../../utils/urls';
-import { CardStyled } from './styles/card.styled';
+import { API_URL } from '../../../../utils/urls';
+import { CardStyled } from '../styles/card.styled';
 
 /**
  * @interface Props

@@ -1,7 +1,7 @@
 import { Modal, Row } from 'antd';
 import React from 'react';
 import Director from 'src/interfaces/director';
-import { API_URL } from '../../../utils/urls';
+import { API_URL } from '../../../../utils/urls';
 import { ModalDetails } from './styles/modal-details.styled';
 
 /**
@@ -36,15 +36,10 @@ export const DirectorDetails: React.FC<Props> = ({
           </span>
         </Row>
         <Row>
-          <img
-            src={API_URL + showDirectorDetails?.cover?.url}
-            style={{ width: '100%', marginTop: '20px' }}
-          />
+          <img src={API_URL + showDirectorDetails?.cover?.url} />
         </Row>
         <Row>
-          <p style={{ marginTop: '20px' }}>
-            {showDirectorDetails?.description}
-          </p>
+          <p>{showDirectorDetails?.description}</p>
         </Row>
       </ModalDetails>
     </Modal>
