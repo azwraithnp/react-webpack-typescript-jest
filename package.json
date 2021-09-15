@@ -20,7 +20,7 @@
   },
   "lint-staged": {
     "src/**/*.(ts|tsx)": [
-      "yarn run --silent lint:fix && yarn run test"
+      "yarn run --silent lint:fix"
     ]
   },
   "devDependencies": {

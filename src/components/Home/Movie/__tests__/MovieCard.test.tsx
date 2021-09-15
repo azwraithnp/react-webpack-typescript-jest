@@ -18,7 +18,6 @@ describe('Movie list card test', () => {
       />,
     );
     const paraElement = screen.getByTitle('movie_title');
-    expect(paraElement).toBeVisible();
     expect(paraElement).toHaveTextContent(mockMovie.title);
   });
 
@@ -31,7 +30,6 @@ describe('Movie list card test', () => {
       />,
     );
     const imgElement = screen.getByAltText('movie_image');
-    expect(imgElement).toBeVisible();
     expect(imgElement).toHaveAttribute('src', API_URL + mockMovie.cover.url);
   });
 
@@ -44,7 +42,6 @@ describe('Movie list card test', () => {
       />,
     );
     const titleElement = screen.getByTitle('category_title');
-    expect(titleElement).toBeVisible();
     expect(titleElement).toHaveTextContent(mockMovie.category_name);
   });
 
@@ -57,7 +54,6 @@ describe('Movie list card test', () => {
       />,
     );
     const titleElement = screen.getByTitle('director_title');
-    expect(titleElement).toBeVisible();
     expect(titleElement).toHaveTextContent(mockMovie.director.name);
   });
 });
