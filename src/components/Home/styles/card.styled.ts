@@ -19,7 +19,6 @@ export const CardStyled = styled(Row)`
   .title {
     font-size: 27px;
     font-weight: 700;
-    margin-top: 10px;
   }
   .category_title {
     font-size: 16px;

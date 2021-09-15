@@ -7,7 +7,7 @@ import React from 'react';
  */
 export const SkeletonCard: React.FC = () => {
   return (
-    <Row justify="center" title="skeleton_card__container">
+    <Row title="skeleton_card__container">
       <Card
         loading
         style={{ width: '400px', marginBottom: '20px' }}

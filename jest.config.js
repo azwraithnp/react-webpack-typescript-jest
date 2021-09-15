@@ -11,4 +11,10 @@ module.exports = {
   moduleNameMapper: {
     '^src(.*)$': '<rootDir>/src$1',
   },
+  preset: 'ts-jest/presets/js-with-babel',
+  globals: {
+    'ts-jest': {
+      babelConfig: true,
+    },
+  },
 };

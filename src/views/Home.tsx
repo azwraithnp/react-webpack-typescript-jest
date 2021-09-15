@@ -4,10 +4,11 @@ import { useQuery } from 'react-query';
 import { MovieDetails } from '../components/Home/Movie/MovieDetails';
 import { MovieCard } from '../components/Home/Movie/MovieCard';
 import { DirectorDetails } from '../components/Home/Director/DirectorDetails';
-import { MoviesLoading } from '../components/Skeletons/MoviesLoading';
 import { API_URL } from '../../utils/urls';
 import Movie from 'src/interfaces/movie';
 import Director from 'src/interfaces/director';
+import { motion } from 'framer-motion';
+import { MoviesLoading } from '../../src/components/Skeletons/MoviesLoading';
 
 /**
  *
@@ -16,6 +17,15 @@ import Director from 'src/interfaces/director';
 const fetchMovies = async () => {
   const res = await fetch(`${API_URL}/movies`);
   return res.json();
+};
+
+const variants = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
 };
 
 /**
@@ -36,18 +46,21 @@ export const Home: React.FC = () => {
 
   return (
     <Layout style={{ backgroundColor: 'white', padding: '20px 20px' }}>
-      <Row justify="center" gutter={[0, 18]}>
+      <Row gutter={[0, 18]}>
         {isLoading && <MoviesLoading />}
-
-        {data &&
-          data.map((movie: Movie, index: number) => (
-            <MovieCard
-              setDirectorModal={setShowDirectorModal}
-              setDisplayDetails={setShowMovieDetails}
-              movie={movie}
-              key={index}
-            />
-          ))}
+        {data && (
+          <motion.div animate={variants.open}>
+            {data &&
+              data.map((movie: Movie, index: number) => (
+                <MovieCard
+                  setDirectorModal={setShowDirectorModal}
+                  setDisplayDetails={setShowMovieDetails}
+                  movie={movie}
+                  key={index}
+                />
+              ))}
+          </motion.div>
+        )}
       </Row>
       <MovieDetails
         showDisplayDetails={showMovieDetails}

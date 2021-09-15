@@ -31,15 +31,20 @@ export const DirectorDetails: React.FC<Props> = ({
     >
       <ModalDetails>
         <Row>
-          <span className="director_modal__title">
+          <span className="director_modal__title" title="director_title">
             {showDirectorDetails?.name}
           </span>
         </Row>
         <Row>
-          <img src={API_URL + showDirectorDetails?.cover?.url} />
+          <img
+            src={API_URL + showDirectorDetails?.cover?.url}
+            alt="director_image"
+          />
         </Row>
         <Row>
-          <p>{showDirectorDetails?.description}</p>
+          <p data-testid="director_paragraph">
+            {showDirectorDetails?.description}
+          </p>
         </Row>
       </ModalDetails>
     </Modal>

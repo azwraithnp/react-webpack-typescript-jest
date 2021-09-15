@@ -111,25 +111,29 @@ export const MovieDetails: React.FC<Props> = ({
       <div onClick={() => setShowDisplayDetails(null)}>
         <DrawerCard>
           <Col xs={12}>
-            <img
-              src={API_URL + showDisplayDetails?.cover?.url}
-              alt="movie_image"
-            />
+            {showDisplayDetails && (
+              <img
+                src={API_URL + showDisplayDetails?.cover?.url}
+                alt="movie_image"
+              />
+            )}
           </Col>
           <Col xs={12}>
             <div>
               <Row>
-                <span className="title">{showDisplayDetails?.title}</span>
+                <span className="title" title="movie_title">
+                  {showDisplayDetails?.title}
+                </span>
               </Row>
               <Row>
-                <span className="category_title">
+                <span className="category_title" title="category_title">
                   {showDisplayDetails?.category_name}
                 </span>
               </Row>
               <Row>
                 <span
                   className="director_title"
-                  id="director_title"
+                  title="director_title"
                   onClick={(event) => showDirectorModal(event)}
                 >
                   {showDisplayDetails?.director?.name}
@@ -164,7 +168,6 @@ export const MovieDetails: React.FC<Props> = ({
                     setDirectorModal={setShowDirectorDetails}
                     setDisplayDetails={setShowDisplayDetails}
                     movie={movie}
-                    detailsLayout
                   />
                 ),
             )}
