@@ -1,7 +1,4 @@
-# outside-test
-Outside Frontend Test Repo
-
-This repo contains the frontend test project for Outside, hosted on, [Vercel | https://outside-test-avinash.vercel.app/](https://outside-test-avinash.vercel.app/) 
+# React Typescript Webpack Jest 
 
 ## Getting Started
 To run this project locally,
@@ -53,8 +50,6 @@ Using `react-query` to fetch our API Requests. This library takes care of cachin
 ## Backend
 
 Hosted publicly using Github actions and Alibaba ECS on [REST](https://strapi.kagati.io)
-
-Repository: [Github](https://github.com/azwraithnp/outside-test-back)
 
 Framework - Strapi (NodeJS)
 
